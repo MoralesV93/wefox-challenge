@@ -2,34 +2,35 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: http-echo
-  name: http-echo
+    app: http-echo-local
+  name: http-echo-local
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: http-echo
+      app: http-echo-local
   template:
     metadata:
       labels:
-        app: http-echo
+        app: http-echo-local
     spec:
       containers:
-      - image: hashicorp/http-echo
+      - image: wefox.challenge.registry:46395/http-echo:v1
         name: http-echo
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
-        args: ['--text="hello world Funciona"', '--listen=:80']
+        args: ['--text="hello world from local"', '--listen=:80']
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: http-echo
+  name: http-echo-local
 spec:
   selector:
-    app: http-echo
+    app: http-echo-local
   type: NodePort
   ports:
     - port: 80

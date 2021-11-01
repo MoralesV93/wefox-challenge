@@ -13,3 +13,6 @@ First, we need locally kubernetes dependencies as above:
 >`sudo mv ./kubectl /usr/local/bin/kubectl`
 
 ## Wefox Cluster
+
+## Resources
+* https://askubuntu.com/questions/1705/how-can-i-create-a-select-menu-in-a-shell-script

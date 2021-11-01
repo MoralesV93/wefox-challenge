@@ -1,30 +1,30 @@
-resource "kubernetes_namespace" "test" {
+resource "kubernetes_namespace" "k" {
   metadata {
-    name = "nginx"
+    name = "http-echo-tf"
   }
 }
-resource "kubernetes_deployment" "test" {
+resource "kubernetes_deployment" "k" {
   metadata {
-    name      = "nginx"
-    namespace = kubernetes_namespace.test.metadata.0.name
+    name      = "http-echo-tf"
+    namespace = kubernetes_namespace.k.metadata.0.name
   }
   spec {
     replicas = 2
     selector {
       match_labels = {
-        app = "MyTestApp"
+        app = "wefox-challenge-app"
       }
     }
     template {
       metadata {
         labels = {
-          app = "MyTestApp"
+          app = "wefox-challenge-app"
         }
       }
       spec {
         container {
-          image = "nginx"
-          name  = "nginx-container"
+          image = "http-echo"
+          name  = "http-echo-tf-container"
           port {
             container_port = 80
           }
@@ -33,18 +33,18 @@ resource "kubernetes_deployment" "test" {
     }
   }
 }
-resource "kubernetes_service" "test" {
+resource "kubernetes_service" "k" {
   metadata {
-    name      = "nginx"
-    namespace = kubernetes_namespace.test.metadata.0.name
+    name      = "http-echo-tf"
+    namespace = kubernetes_namespace.k.metadata.0.name
   }
   spec {
     selector = {
-      app = kubernetes_deployment.test.spec.0.template.0.metadata.0.labels.app
+      app = kubernetes_deployment.k.spec.0.template.0.metadata.0.labels.app
     }
     type = "NodePort"
     port {
-      node_port   = 30201
+      node_port   = 30060
       port        = 80
       target_port = 80
     }
