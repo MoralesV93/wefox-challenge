@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "k" {
       }
       spec {
         container {
-          image = "http-echo"
+          image = "hashicorp/http-echo:${var.image_version}"
           name  = "http-echo-tf-container"
           port {
             container_port = 80

@@ -5,7 +5,8 @@ select opt in "${options[@]}"
 do
     case $opt in
         "Init env")
-            sudo /bin/bash ./bin/config-env.sh
+            echo $1
+            sudo /bin/bash ./bin/config-env.sh $1
             ;;
         "Launch k3d cluster")
             /bin/bash ./bin/launch-cluster.sh

@@ -1,4 +1,5 @@
 #!/bin/bash
+echo $1
 if k3d --version; then
     echo "k3d already installed"
 else

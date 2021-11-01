@@ -15,7 +15,7 @@ spec:
         app: http-echo-local
     spec:
       containers:
-      - image: wefox.challenge.registry:46395/http-echo:v1
+      - image: wefox.challenge.registry:46395/http-echo:image-version
         name: http-echo
         imagePullPolicy: IfNotPresent
         ports:

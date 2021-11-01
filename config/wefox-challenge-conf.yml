@@ -15,7 +15,7 @@ spec:
         app: http-echo
     spec:
       containers:
-      - image: hashicorp/http-echo
+      - image: hashicorp/http-echo:0.2.1
         name: http-echo
         ports:
         - containerPort: 80
